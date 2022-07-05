@@ -35,22 +35,35 @@ jobs:
     - name: Set Tag with SHA
       run: echo "TAG=`echo $GITHUB_SHA | cut -c 1-6`" >> $GITHUB_ENV
     
-    - name: Build the tagged Docker image
-      run: docker build . --tag ${{ env.IMAGE }}:$TAG
+    # - name: Build the tagged Docker image
+    #   run: docker build . --tag ${{ env.IMAGE }}:$TAG
     # - uses: docker-practice/actions-setup-docker@master
     # - name: build-image
     #   uses: borales/actions-yarn@v3.0.0
     #   with:
     #     cmd: build-image --tag ${{ env.IMAGE }}:$TAG
 
-    - name: Push to ECR
+    - name: Login to ECR
       id: ecr
-      uses: jwalton/gh-ecr-push@v1
+      uses: jwalton/gh-ecr-login@v1
       with:
         access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         region: ${{ env.REGION }}
-        image: ${{ env.IMAGE }}:$TAG
+    - name: Push to ECR
+      run: |
+        docker build . --tag ${{ env.IMAGE }}:$TAG
+        docker push ${{ env.IMAGE }}:$TAG
+
+
+    # - name: Push to ECR
+    #   id: ecr
+    #   uses: jwalton/gh-ecr-push@v1
+    #   with:
+    #     access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     region: ${{ env.REGION }}
+    #     image: ${{ env.IMAGE }}:$TAG
 
     - name: Inform Humanitec
       run: |-

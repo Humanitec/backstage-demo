@@ -76,13 +76,13 @@ scaffolder:
 catalog:
   locations:
     - type: url
-      target: https://github.com/thefrontside/backstage/blob/main/catalog-info.yaml
+      target: https://storage.googleapis.com/hum-demo-backstage-catalog-info/${HUMANITEC_ORG}/catalog-info.yaml
     - type: url
       target: https://github.com/thefrontside/backstage/blob/main/templates/standard-microservice/template.yaml
       rules:
         - allow: [Template]
 
 humanitec:
-  orgId: the-frontside-software-inc
-  registryUrl: "northamerica-northeast1-docker.pkg.dev/frontside-backstage/frontside-artifacts"
+  orgId: ${HUMANITEC_ORG}
+  registryUrl: ${REGISTRY_URL}
   token: ${HUMANITEC_TOKEN}

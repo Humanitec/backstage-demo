@@ -7,7 +7,7 @@ metadata:
   # Example for optional annotations
   annotations:
     github.com/project-slug: thefrontside/backstage
-    "humanitec.com/orgId": "dummy"
+    "humanitec.com/orgId": "mck-poc"
     "humanitec.com/appId": "backstage"
     # backstage.io/techdocs-ref: dir:.
 spec:

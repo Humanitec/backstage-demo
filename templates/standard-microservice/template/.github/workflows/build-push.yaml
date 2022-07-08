@@ -37,7 +37,7 @@ jobs:
       - name: Notify Humanitec
         run: |
           curl \
-            --request POST "https://api.humanitec.io/orgs/$HUMANITEC_ORG/images/$COMPONENT_NAME/builds" \
+            --request POST "https://api.humanitec.io/orgs/${{ env.HUMANITEC_ORG }}/images/${{ env.COMPONENT_NAME }}/builds" \
             --header "Authorization: Bearer ${{ secrets.HUMANITEC_TOKEN }}" \
             --header "Content-Type: application/json" \
             --data-raw '{ 
@@ -45,5 +45,5 @@ jobs:
                 "commit": "'${{github.sha}}'",
                 "image": "'{% endraw %}${{ values.registryUrl }}/${{ values.componentName }}{% raw %}:${{github.sha}}'",
                 "tags": ["'${{github.sha}}'"]
-            }'
+            }' -v
 {% endraw %}

@@ -38,7 +38,7 @@ jobs:
         run: |
           curl \
             --request POST "https://api.humanitec.io/orgs/${{ env.HUMANITEC_ORG }}/images/${{ env.COMPONENT_NAME }}/builds" \
-            --header "Authorization: Bearer ${{ secrets.HUMANITEC_TOKEN }}" \
+            --header "Authorization: Bearer ${{ secrets.HUMANITEC_TOKEN_MCK }}" \
             --header "Content-Type: application/json" \
             --data-raw '{ 
                 "branch": "'${{github.ref_name}}'",

@@ -14,12 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    # - name: Setup cmake
-    #   uses: jwlawson/actions-setup-cmake@v1.12
-    #   with:
-    #     cmake-version: '3.16.x'
-    # - name: Use cmake
-    #   run: cmake --version
     - name: yarn install
       uses: borales/actions-yarn@v3.0.0
       with:
@@ -34,15 +28,6 @@ jobs:
         cmd: build
     - name: Set Tag with SHA
       run: echo "TAG=`echo $GITHUB_SHA | cut -c 1-6`" >> $GITHUB_ENV
-    
-    # - name: Build the tagged Docker image
-    #   run: docker build . --tag ${{ env.IMAGE }}:$TAG
-    # - uses: docker-practice/actions-setup-docker@master
-    # - name: build-image
-    #   uses: borales/actions-yarn@v3.0.0
-    #   with:
-    #     cmd: build-image --tag ${{ env.IMAGE }}:$TAG
-
     - name: Login to ECR
       id: ecr
       uses: jwalton/gh-ecr-login@v1
@@ -54,17 +39,6 @@ jobs:
       run: |
         docker build . --tag ${{ env.IMAGE }}:$TAG
         docker push ${{ env.IMAGE }}:$TAG
-
-
-    # - name: Push to ECR
-    #   id: ecr
-    #   uses: jwalton/gh-ecr-push@v1
-    #   with:
-    #     access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     region: ${{ env.REGION }}
-    #     image: ${{ env.IMAGE }}:$TAG
-
     - name: Inform Humanitec
       run: |-
         curl \

@@ -35,7 +35,7 @@ jobs:
         access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         region: ${{ env.REGION }}
-    - name: Push to ECR
+    - name: Build and Push to ECR
       run: |
         docker build . --tag ${{ env.IMAGE }}:$TAG
         docker push ${{ env.IMAGE }}:$TAG

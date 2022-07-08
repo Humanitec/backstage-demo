@@ -27,7 +27,7 @@ jobs:
           region: ${{ secrets.AWS_REGION }}
       - name: Build and Push to ECR
         run: |
-          aws ecr describe-repositories --repository-names ${COMPONENT_NAME} || aws ecr create-repository --repository-name ${COMPONENT_NAME}
+          aws ecr describe-repositories --repository-names ${COMPONENT_NAME} --region ${{ secrets.AWS_REGION }} || aws ecr create-repository --repository-name ${COMPONENT_NAME} --region ${{ secrets.AWS_REGION }}
           docker build . --tag ${{ secrets.ECR_ROOT }}$COMPONENT_NAME:${{github.sha}}
           docker push ${{ secrets.ECR_ROOT }}$COMPONENT_NAME:${{github.sha}}
 

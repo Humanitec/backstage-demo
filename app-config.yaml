@@ -76,7 +76,7 @@ scaffolder:
 catalog:
   locations:
     - type: url
-      target: https://storage.googleapis.com/hum-demo-backstage-catalog-info/mck-poc/catalog-info.yaml
+      target: https://github.com/Humanitec/backstage/blob/main/catalog-info.yaml
     - type: url
       target: https://github.com/Humanitec/backstage/blob/main/templates/standard-microservice/template.yaml
       rules:

@@ -26,6 +26,9 @@ jobs:
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: ${{ secrets.AWS_REGION }}
       - name: Build and Push to ECR
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           aws ecr describe-repositories --repository-names ${COMPONENT_NAME} --region ${{ secrets.AWS_REGION }} || aws ecr create-repository --repository-name ${COMPONENT_NAME} --region ${{ secrets.AWS_REGION }}
           docker build . --tag ${{ secrets.ECR_ROOT }}$COMPONENT_NAME:${{github.sha}}

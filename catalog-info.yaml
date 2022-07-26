@@ -6,7 +6,7 @@ metadata:
   description: MCK Backstage Developer Portal
   # Example for optional annotations
   annotations:
-    github.com/project-slug: humanitec/backstage
+    github.com/project-slug: humanitec/backstage-demo
     "humanitec.com/orgId": "mck-poc"
     "humanitec.com/appId": "backstage"
     # backstage.io/techdocs-ref: dir:.

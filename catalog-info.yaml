@@ -2,7 +2,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: backstage
+  name: backstage-demo
   description: MCK Backstage Developer Portal
   # Example for optional annotations
   annotations:
